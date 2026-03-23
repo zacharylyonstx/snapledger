@@ -1,0 +1,14 @@
+{
+  "memories": [],
+  "manual_memories": [],
+  "realtime_memories": [
+    {
+      "type": "message",
+      "content": "You are building SnapLedger — an AI-powered invoice and receipt processor SaaS. PRODUCT: Users upload a photo or PDF of an invoice/receipt. AI extracts structured data (vendor, date, line items, total",
+      "added_at": "2026-03-23T18:42:36.032692",
+      "source": "realtime_capture"
+    }
+  ],
+  "created_at": "2026-03-23T18:42:36.032495",
+  "updated_at": "2026-03-23T18:42:36.032695"
+}
