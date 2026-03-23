@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SnapLedger ⚡
 
-## Getting Started
+**AI-powered invoice & receipt processor.** Upload a photo or PDF, get clean structured data in seconds.
 
-First, run the development server:
+## What It Does
+
+- Upload any invoice, receipt, or bill (photo or PDF)
+- AI extracts vendor, dates, line items, totals, tax, payment terms
+- Export as CSV, JSON, or QuickBooks-compatible format
+- REST API for programmatic access
+
+## Tech Stack
+
+- **Next.js 15** (App Router + TypeScript)
+- **Tailwind CSS + shadcn/ui** — dark mode, premium feel
+- **OpenAI GPT-4o Vision** — document analysis
+- **Supabase** — auth, database, storage
+- **Stripe** — subscription billing
+- **Vercel** — hosting
+
+## Quick Start
 
 ```bash
+# Install deps
+npm install
+
+# Copy env vars
+cp .env.example .env.local
+# Fill in your API keys
+
+# Run dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Required | Description |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase anonymous key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Supabase service role key |
+| `OPENAI_API_KEY` | Yes | OpenAI API key (GPT-4o) |
+| `STRIPE_SECRET_KEY` | For billing | Stripe secret key |
+| `STRIPE_WEBHOOK_SECRET` | For billing | Stripe webhook signing secret |
+| `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | For billing | Stripe publishable key |
 
-## Learn More
+## Database Setup
 
-To learn more about Next.js, take a look at the following resources:
+Run `supabase/schema.sql` in your Supabase SQL editor to create all tables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## API Usage
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+curl -X POST https://your-domain.com/api/v1/process \
+  -H "Authorization: Bearer sk_your_api_key" \
+  -F "file=@invoice.jpg"
+```
 
-## Deploy on Vercel
+Response:
+```json
+{
+  "success": true,
+  "data": {
+    "vendor": "Home Depot",
+    "date": "2026-03-15",
+    "total": 154.66,
+    "tax": 11.79,
+    "line_items": [...]
+  }
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Pricing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Free** — 10 docs/month, all exports
+- **Pro** ($29/mo) — 200 docs/month, API access, batch processing
+- **Business** ($79/mo) — Unlimited, custom integrations, SSO
+
+## Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/zacharylyonstx/snapledger)
+
+## License
+
+MIT
