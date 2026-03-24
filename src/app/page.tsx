@@ -70,6 +70,12 @@ export default function LandingPage() {
             >
               API
             </a>
+            <Link
+              href="/services"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Hire Us
+            </Link>
           </div>
           <div className="flex items-center gap-3">
             <Link href="/login">
