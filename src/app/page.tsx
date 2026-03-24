@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { WaitlistForm } from "@/components/waitlist-form";
+import { DemoUpload } from "@/components/demo-upload";
 import {
   Zap,
   FileText,
@@ -126,28 +128,12 @@ export default function LandingPage() {
             </span>
           </motion.p>
 
-          <motion.div
-            variants={fadeUp}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Link href="/signup">
-              <Button size="lg" className="text-base px-8 gap-2">
-                Start Free <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <a href="#how-it-works">
-              <Button variant="outline" size="lg" className="text-base px-8">
-                See How It Works
-              </Button>
-            </a>
+          <motion.div variants={fadeUp}>
+            <WaitlistForm className="mb-3" />
+            <p className="text-sm text-muted-foreground">
+              Join the early access list. Free tier included. No credit card.
+            </p>
           </motion.div>
-
-          <motion.p
-            variants={fadeUp}
-            className="mt-4 text-sm text-muted-foreground"
-          >
-            10 documents/month free. No credit card required.
-          </motion.p>
 
           {/* Hero visual — mock preview */}
           <motion.div
@@ -198,6 +184,25 @@ export default function LandingPage() {
             </div>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Live Demo */}
+      <section id="demo" className="py-20">
+        <div className="mx-auto max-w-xl px-6">
+          <div className="text-center mb-8">
+            <Badge variant="secondary" className="mb-4 px-4 py-1.5">
+              <Zap className="mr-1 h-3 w-3 text-primary" />
+              Try It Now — No Signup
+            </Badge>
+            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2">
+              See it in action
+            </h2>
+            <p className="text-muted-foreground">
+              Upload any receipt or invoice. Watch AI extract every data point in seconds.
+            </p>
+          </div>
+          <DemoUpload />
+        </div>
       </section>
 
       {/* Social proof */}
@@ -489,14 +494,9 @@ export default function LandingPage() {
             Stop typing. Start shipping.
           </h2>
           <p className="text-muted-foreground text-lg mb-8">
-            Join thousands of businesses that automated their invoice processing
-            with SnapLedger.
+            Get early access to AI-powered invoice processing that saves hours every week.
           </p>
-          <Link href="/signup">
-            <Button size="lg" className="text-base px-8 gap-2">
-              Get Started Free <ArrowRight className="h-4 w-4" />
-            </Button>
-          </Link>
+          <WaitlistForm />
         </div>
       </section>
 
